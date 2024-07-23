@@ -1,8 +1,9 @@
-puts "Please enter a word"
+puts "Please enter a word or sentence"
 sentence = gets.chomp
 
 
 def substrings (sentence,dictionary)
+  sentence = sentence.gsub(/[^a-zA-Z0-9]/, ' ')
   full_sentence = sentence.split
   substrings_hash = Hash.new(0)
   
@@ -14,8 +15,8 @@ def substrings (sentence,dictionary)
     if dictionary.include?(sentence.downcase)
        substrings_hash[sentence.downcase] += 1
     end
-    
-      character_sentence.each_with_index do |character,index|
+
+      character_sentence.each do |character|
         chracter_hold += character
         if chracter_hold.downcase != sentence.downcase && dictionary.include?(chracter_hold.downcase)
            substrings_hash[chracter_hold.downcase] += 1
