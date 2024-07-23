@@ -17,20 +17,21 @@ def substrings (sentence,dictionary)
         if chracter_hold != sentence && dictionary.any?(chracter_hold)
            substrings_hash[chracter_hold] += 1
         elsif chracter_hold.length == sentence.length
-              number = chracter_hold.length
-              i = 0
-              until i == number
-                nsentence = character_sentence[1..-1]
-                if dictionary.any?(nsentence)
-                  substrings_hash[sentence] += 1
-                  i += 1
-                end  
+              character_sentence.each_with_index do |l,index|
+                substring = sentence[index..-1]
+                if dictionary.include?(substring)
+                   substrings_hash[substring] += 1
+                end
               end
 
+        end
+        if dictionary.any?(character)
+           substrings_hash[character] += 1
         end
       end
     end
   end
+  
   p substrings_hash
 end
 
