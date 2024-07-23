@@ -20,9 +20,10 @@ def substrings (sentence,dictionary)
               number = chracter_hold.length
               i = 0
               until i == number
-                nsentence = sentence[1..-1]
+                nsentence = character_sentence[1..-1]
                 if dictionary.any?(nsentence)
                   substrings_hash[sentence] += 1
+                  i += 1
                 end  
               end
 
