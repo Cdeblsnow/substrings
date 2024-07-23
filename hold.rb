@@ -10,21 +10,12 @@ def substrings (sentence,dictionary)
 
   full_sentence.each do |sentence|
     if dictionary.any?(sentence)
-       substrings_hash[sentence] += 1
+      substrings_hash[sentence] += 1
 
       character_sentence.each do |character|
         chracter_hold += character
         if chracter_hold != sentence && dictionary.any?(chracter_hold)
-           substrings_hash[chracter_hold] += 1
-        elsif chracter_hold.length == sentence.length
-              number = chracter_hold.length
-              i = 0
-              until i == number
-                nsentence = sentence[1..-1]
-                if dictionary.any?(nsentence)
-                  substrings_hash[sentence] += 1
-                end  
-              end
+            substrings_hash[chracter_hold] += 1
 
         end
       end
