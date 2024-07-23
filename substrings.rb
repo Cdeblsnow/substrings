@@ -4,32 +4,34 @@ sentence = gets.chomp
 
 def substrings (sentence,dictionary)
   full_sentence = sentence.split
-  character_sentence = sentence.chars
   substrings_hash = Hash.new(0)
-  chracter_hold = ""
+  
 
   full_sentence.each do |sentence|
-    if dictionary.any?(sentence)
-       substrings_hash[sentence] += 1
+    chracter_hold = ""
+    character_sentence = sentence.chars
 
-      character_sentence.each do |character|
+    if dictionary.include?(sentence.downcase)
+       substrings_hash[sentence.downcase] += 1
+    end
+    
+      character_sentence.each_with_index do |character,index|
         chracter_hold += character
-        if chracter_hold != sentence && dictionary.any?(chracter_hold)
-           substrings_hash[chracter_hold] += 1
+        if chracter_hold.downcase != sentence.downcase && dictionary.include?(chracter_hold.downcase)
+           substrings_hash[chracter_hold.downcase] += 1
         elsif chracter_hold.length == sentence.length
-              character_sentence.each_with_index do |l,index|
-                substring = sentence[index..-1]
-                if dictionary.include?(substring)
-                   substrings_hash[substring] += 1
-                end
+            sentence.length.times do |i|
+              substring = sentence[i+1..-1]
+              if dictionary.include?(substring)
+                  substrings_hash[substring] += 1
               end
-
+            end
         end
-        if dictionary.any?(character)
-           substrings_hash[character] += 1
+
+        if dictionary.include?(character.downcase)
+           substrings_hash[character.downcase] += 1
         end
       end
-    end
   end
   
   p substrings_hash
